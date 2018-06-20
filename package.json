@@ -22,6 +22,9 @@
     "@angular/router": "^6.0.3",
     "core-js": "^2.5.4",
     "rxjs": "^6.0.0",
+    "@microsoft/microsoft-graph-client": "https://github.com/microsoftgraph/msgraph-sdk-javascript.git",
+    "@microsoft/microsoft-graph-types": "https://github.com/microsoftgraph/msgraph-typescript-typings.git",
+    "hellojs": "1.15.1",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
