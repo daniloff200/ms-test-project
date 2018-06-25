@@ -48,12 +48,22 @@ export class HomeService {
   }
 
 
-  getUsers(): Observable<MicrosoftGraph.User>
-  {
+  getUsers(): Observable<MicrosoftGraph.User> {
     var client = this.getClient();
     return from(client
       .api('users')
       .select("displayName,givenName,postalCode")
+      .get()
+      .then ((res => {
+        return res;
+      } ) )
+    );
+  }
+
+  getCalendarEventsForCurrentUser(): Observable<MicrosoftGraph.User> {
+    var client = this.getClient();
+    return from(client
+      .api('me/calendar/events')
       .get()
       .then ((res => {
         return res;

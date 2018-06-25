@@ -29,7 +29,9 @@ import { AuthService } from '../auth/auth.service';
 export class HomeComponent implements OnInit, OnDestroy {
   me: MicrosoftGraph.User;
   users: MicrosoftGraph.User;
+  currentUserEvents: any;
   subsGetUsers: Subscription;
+  subsGetCurrentUserEvents: Subscription;
   subsGetMe: Subscription;
 
   constructor(
@@ -40,7 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.subsGetMe = this.homeService.getMe().subscribe(me => this.me = me);
     this.subsGetUsers = this.homeService.getUsers().subscribe(users => this.users = users);
-      console.log(this.users)
+    this.subsGetCurrentUserEvents = this.homeService.getCalendarEventsForCurrentUser().subscribe(events => this.currentUserEvents = events);
   }
 
   ngOnDestroy() {
@@ -49,9 +51,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getData() {
-    console.log(this.users)
     console.log(this.me)
-
+    console.log(this.users)
+    console.log(this.currentUserEvents)
   }
 
   onLogout() {
