@@ -31,7 +31,7 @@ export class HomeService {
     var client = this.getClient();
     return from(client
       .api('me')
-      .select("displayName, mail, userPrincipalName, calendars")
+      .select("displayName, mail, userPrincipalName")
       .get()
       .then ((res => {
         return res;
@@ -39,20 +39,11 @@ export class HomeService {
     );
   }
 
-  sendMail(mail: MicrosoftGraph.Message) {
-    var client = this.getClient();
-    return from(client
-      .api('me/sendmail')
-      .post({message: mail})
-    );
-  }
-
-
   getUsers(): Observable<MicrosoftGraph.User> {
     var client = this.getClient();
     return from(client
       .api('users')
-      .select("displayName,givenName,postalCode")
+      .select("displayName, mail, userPrincipalName")
       .get()
       .then ((res => {
         return res;
