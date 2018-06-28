@@ -18,7 +18,7 @@ import { AuthService } from '../auth/auth.service';
     <div>
       <h2 *ngIf="me" class="ms-font-xxl ms-fontWeight-semibold">Hi, {{ me.displayName }}!</h2>
       <button (click)="getData()"> get </button>
-
+       <span *ngIf="dataIsReady"> Check your console :) </span>   
 
 
     </div>
@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   me: MicrosoftGraph.User;
   users: MicrosoftGraph.User;
   currentUserEvents: any;
+  dataIsReady = false;
   subsGetUsers: Subscription;
   subsGetCurrentUserEvents: Subscription;
   subsGetMe: Subscription;
@@ -51,9 +52,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   getData() {
-    console.log(this.me)
-    console.log(this.users)
-    console.log(this.currentUserEvents)
+    console.log('current user data', this.me);
+    console.log('list of users', this.users);
+    console.log('current user events',this.currentUserEvents);
+    this.dataIsReady = true;
   }
 
   onLogout() {
